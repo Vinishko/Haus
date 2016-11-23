@@ -1,0 +1,58 @@
+﻿<Window x:Class="Haus.AddFood"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddFood" Height="355.925" Width="730.239">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="325" VerticalAlignment="Top" Width="722">
+            <TabItem Header="Додати товар">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-1">
+                    <Button Name="AddFoodButt" Content="Додати" HorizontalAlignment="Left" Margin="244,247,0,0" VerticalAlignment="Top" Width="75" Click="AddFoodButt_Click"/>
+                    <ComboBox ItemsSource="{Binding FoodTypes}" 
+          DisplayMemberPath="Name" 
+          SelectedValuePath="FoodTypeId"  Name="InputFoodType" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" Width="120"/>
+                    <DataGrid FontFamily="Buxton Sketch" FontSize="18"  CanUserReorderColumns="False" CanUserResizeColumns="False"  AutoGenerateColumns="False"  ItemsSource="{Binding OrderForUsers}" x:Name="Components" Height="225" VerticalAlignment="Top" DataContext="Context"  Margin="204,0,0,0">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn  Header="Name" Width="0.3*" Binding="{Binding Name}"  IsReadOnly="True"/>
+                            <DataGridTextColumn  CanUserSort="False" Header="Кількість" Binding="{ Binding  count,NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" Width="0.1*"></DataGridTextColumn>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBox Name="InputName" HorizontalAlignment="Left" Height="23" Margin="10,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox Name="InputPrice" HorizontalAlignment="Left" Height="23" Margin="10,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Назва товару" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Ціна:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Тип" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox ItemsSource="{Binding Components}" 
+          DisplayMemberPath="Name" 
+          SelectedValuePath="ComponentId"  Name="InputComponents" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="InputComponents_SelectionChanged"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Видалити товар">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-96,-38">
+                    <ComboBox ItemsSource="{Binding Food}" 
+          DisplayMemberPath="Name" 
+          SelectedValuePath="FoodId"  Name="DeleteFoodCB" HorizontalAlignment="Left" Margin="101,46,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Name="DeleteFood" Content="Видалити" HorizontalAlignment="Left" Margin="121,106,0,0" VerticalAlignment="Top" Width="75" Click="DeleteFood_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Visibility="Hidden" Header="Оновити товар">
+                <Grid>
+                    <ComboBox ItemsSource="{Binding Food}" 
+          DisplayMemberPath="Name" 
+          SelectedValuePath="FoodId" SelectionChanged="UpdateFoodCB_OnSelectionChanged"  Name="UpdateFoodCB" HorizontalAlignment="Left" Margin="101,46,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Name="nameTB" Margin="101,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Name="priceTB" Margin="101,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox ItemsSource="{Binding FoodTypes}" 
+          DisplayMemberPath="Name" 
+          SelectedValuePath="FoodTypeId"  Name="UpdateFoodTypeCB" HorizontalAlignment="Left" Margin="101,154,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Click="UpdateFood_OnClick" Name="UpdateFood" Content="Оновити" HorizontalAlignment="Left" Margin="133,205,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

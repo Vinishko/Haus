@@ -1,0 +1,16 @@
+﻿<Window x:Class="Haus.CloseChek"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Закрити чек" Height="229.851" Width="377.612">
+    <Grid>
+        <Label Content="Загальна сума чеку" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="156"/>
+        <TextBox  IsReadOnly="True" Name="TotCount" HorizontalAlignment="Left" Height="23" Margin="216,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Готівкою" HorizontalAlignment="Left" Margin="10,56,0,0" VerticalAlignment="Top"/>
+        <TextBox TextChanged="Cash_OnTextChanged" Name="Cash" HorizontalAlignment="Left" Height="23" Margin="216,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Різниця" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="True" Name="Div" HorizontalAlignment="Left" Height="23" Margin="216,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Click="Button_Click" Name="Close" IsEnabled="False" Content="Закрити" HorizontalAlignment="Left" Margin="216,140,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="Cancel" IsCancel="True" Content="Відмінити" HorizontalAlignment="Left" Margin="56,140,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_Click" />
+
+    </Grid>
+</Window>

@@ -1,0 +1,67 @@
+﻿<Window x:Class="Haus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Касова програма" Height="715" Width="1300" Closing="MainWindow_OnClosing">
+    <Grid>
+        <DockPanel LastChildFill="False" Margin="0,10,0,17" HorizontalAlignment="Right" Width="368">
+            <TabControl Name="RightBar" Width="368"/>
+        </DockPanel>
+        <DockPanel  HorizontalAlignment="Left" Height="622" LastChildFill="False" Margin="10,62,0,0" VerticalAlignment="Top" Width="909">
+            <DataGrid FontFamily="Buxton Sketch" FontSize="18"  CurrentCellChanged="Order_OnCurrentCellChanged" CellEditEnding="Order_OnCellEditEnding" CanUserReorderColumns="False" CanUserResizeColumns="False"  AutoGenerateColumns="False"  ItemsSource="{Binding OrderForUsers}" Name="Order" Height="506" VerticalAlignment="Top" Width="909" DataContext="Context" SelectionChanged="Order_SelectionChanged">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn  Header="Name" Width="0.3*" Binding="{Binding Name}"  IsReadOnly="True"/>
+                    <DataGridTextColumn  CanUserSort="False" Header="Кількість" Binding="{ Binding  count,NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" Width="0.1*"></DataGridTextColumn>
+                    <DataGridTextColumn CanUserSort="False" IsReadOnly="True" Binding="{Binding price }"  Header="Ціна од." Width="0.1*"></DataGridTextColumn>
+                    <DataGridTextColumn CanUserSort="False" IsReadOnly="True" Binding="{Binding TotalPrice1}" Header="Ціна" Width="0.1*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label Content="Label" Height="622" VerticalAlignment="Top" Width="100"/>
+
+
+        </DockPanel>
+
+        <Label FontSize="13" FontFamily="Buxton Sketch" Content="Номер карти:
+               " Height="27" VerticalAlignment="Bottom" Margin="0,0,0,80" HorizontalAlignment="Left" Width="93"/>
+        <Button FontSize="18" FontFamily="Buxton Sketch" Name="CloseOrder" Content="Закрити" HorizontalAlignment="Left" Margin="805,628,0,0" VerticalAlignment="Top" Width="75" Click="CloseOrder_Click"/>
+        <Label FontFamily="Buxton Sketch" FontSize="18" Content="Загальна ціна:" Width="131" Margin="645,0,0,74" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <Label FontFamily="Buxton Sketch" FontSize="18" Name="TotalPrice" Content="" Width="100" Margin="805,0,387,71" Height="29" VerticalAlignment="Bottom"/>
+        <Button FontSize="18" FontFamily="Buxton Sketch" Name="CancelItem" Content="Відмінити" HorizontalAlignment="Left" Margin="608,34,0,0" VerticalAlignment="Top" Width="82" Click="CancelItem_Click" Height="23"/>
+        <Button Click="Currencycalc_OnClick" Name="Currencycalc" Content="Калькулятор валют" HorizontalAlignment="Left" VerticalAlignment="Top" Width="125"/>
+        <Button Click="PrintX_OnClick" Name="PrintX" Content="Надрукувати звіт" HorizontalAlignment="Left" Margin="130,0,0,0" VerticalAlignment="Top" Width="110"/>
+        <ComboBox Name="AdminToolbar" IsEditable="False" IsEnabled="False" IsReadOnly="True"
+ Text="-- Select Team --" HorizontalAlignment="Left" Margin="259,-2,0,0" VerticalAlignment="Top" Width="110" >
+            <ComboBoxItem  >
+                <Button Name="FoodTypeButton" Click="FoodTypeButton_OnClick" >Робота з категоріями</Button>
+            </ComboBoxItem>
+            <ComboBoxItem >
+                <Button Name="ComponentButton"  Width="120" Click="ComponentButton_Click" >Робота з компонентами</Button>
+            </ComboBoxItem>
+            <ComboBoxItem >
+                <Button Name="FoodButton" Click="FoodButton_OnClick" Width="120" >Робота з товарами</Button>
+            </ComboBoxItem>
+            <ComboBoxItem >
+                <Button Name="UsersButton" Click="UsersButton_OnClick" Width="120">Робота з персоналом</Button>
+            </ComboBoxItem>
+            <ComboBoxItem >
+                <Button Name="ReportStatusDown" Click="ReportStatusDown_OnClick" Width="120">Відміна чеку</Button>
+            </ComboBoxItem>
+            <ComboBoxItem >
+                <Button Name="DiscountButton" Click="DiscountButton_OnClick" Width="120">Дисконт</Button>
+            </ComboBoxItem>
+        </ComboBox>
+        <Label Name="UserName" Content="" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Width="274"/>
+        <TextBox Name="CardNumber" HorizontalAlignment="Left" Margin="98,0,0,84" TextWrapping="Wrap" Text="" Width="120" Height="23" VerticalAlignment="Bottom"/>
+        <Button FontSize="16" FontFamily="Buxton Sketch" Name="CheckCardButton" Content="Перевірити картку" HorizontalAlignment="Left" Margin="232,0,0,80" Click="CheckCardButton_OnClick" Width="155" Height="27" VerticalAlignment="Bottom"/>
+        <Label FontSize="15" FontFamily="Buxton Sketch" Content="Власник картки:" HorizontalAlignment="Left" Margin="10,0,0,48" Height="26" VerticalAlignment="Bottom" Width="115"/>
+        <Label Name="FIOClient" Content="" HorizontalAlignment="Left" Margin="130,0,0,48" Width="139" Height="26" VerticalAlignment="Bottom"/>
+        <Label FontSize="15" FontFamily="Buxton Sketch" Content="Сумма клієнта" HorizontalAlignment="Left" Margin="274,0,0,48" Height="26" VerticalAlignment="Bottom" Width="121" />
+        <Label Name="TotalSumClient" Content="" HorizontalAlignment="Left" Margin="383,0,0,48" Width="123" Height="26" VerticalAlignment="Bottom" />
+        <Label FontSize="18" FontFamily="Buxton Sketch" Content="Знижка клієнта:" HorizontalAlignment="Left" Margin="10,0,0,17" Height="26" VerticalAlignment="Bottom"/>
+        <Label Name="DiscountClient" Content="" HorizontalAlignment="Left" Margin="136,0,0,17" Width="110" Height="26" VerticalAlignment="Bottom"/>
+        <Button Click="CardToUser_OnClick" Name="CardToUser" Content="Видати картку" HorizontalAlignment="Left" Margin="392,0,0,0" VerticalAlignment="Top" Width="98"/>
+        <ComboBox Name="Discount" HorizontalAlignment="Left" Margin="407,578,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Discount}" DisplayMemberPath="Percent" 
+          SelectedValuePath="DiscountId"/>
+        <Button Click="DiscountForce_OnClick" Name="DiscountForce" Content="Примінити" Height="22" VerticalAlignment="Bottom" Width="75" Margin="544,0,672,85"/>
+    </Grid>
+</Window>
