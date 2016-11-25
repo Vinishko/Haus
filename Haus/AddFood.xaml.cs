@@ -116,6 +116,9 @@ namespace Haus
                 db.SaveChanges();
             }
             MessageBox.Show("Товар додано");
+            ComponentsForFoods.Clear();
+            Components.Items.Refresh();
+
         }
 
         private void DeleteFood_Click(object sender, RoutedEventArgs e)
@@ -159,7 +162,7 @@ namespace Haus
             if (InputComponents.SelectedIndex > -1)
             {
                 var item = sender as ComboBox;
-                var component = item.Items.CurrentItem as Component;
+                var component = item.Items[InputComponents.SelectedIndex] as Component;
                 ComponentsForFoods.Add(new ComponentsForFood(component));
                 Components.Items.Refresh();
             }
